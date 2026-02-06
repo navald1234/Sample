@@ -292,5 +292,36 @@
     © 2026 <span>AB INFOTECH SOLUTIONS Pvt. Ltd.</span> All Rights Reserved.
 </footer>
 
+<script>
+    // Smooth scroll for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href'))
+                .scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+
+    // Fade-in animation on scroll
+    const sections = document.querySelectorAll('section');
+
+    const reveal = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = 1;
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, { threshold: 0.15 });
+
+    sections.forEach(section => {
+        section.style.opacity = 0;
+        section.style.transform = 'translateY(40px)';
+        section.style.transition = 'all 0.7s ease';
+        reveal.observe(section);
+    });
+</script>
+
+
 </body>
 </html>
